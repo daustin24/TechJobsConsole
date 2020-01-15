@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -120,23 +121,29 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            foreach (Dictionary<string, string> job in someJobs)
+            if ((someJobs == null) || ( !someJobs.Any() ))
             {
-                Console.WriteLine("*****");
-
-                foreach (string key in job.Keys)
+                Console.WriteLine("No Results Found");
+            }
+            else
+            {
+                foreach (Dictionary<string, string> job in someJobs)
                 {
-                   
+                    Console.WriteLine("*****");
 
-                    Console.WriteLine(key + " : " + job[key]);
-                   
+                    foreach (string key in job.Keys)
+                    {
 
 
-                    //Console.ReadLine();
+                        Console.WriteLine(key + " : " + job[key]);
 
+
+
+                        //Console.ReadLine();
+
+                    }
+                    Console.WriteLine("*****");
                 }
-                Console.WriteLine("*****");
-
             }
 
         }
