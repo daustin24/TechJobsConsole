@@ -16,6 +16,32 @@ namespace TechJobsConsole
             return AllJobs;
         }
 
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+
+                foreach (string key in row.Keys)
+                {
+                    string aValue = row[key];
+
+                    if (aValue.ToLower().Contains(value.ToLower()))
+                    {
+                        jobs.Add(row);
+
+                        // Finding one field in a job that matches is sufficient
+                        break;
+                    }
+                }
+            }
+
+            return jobs;
+        }
         /*
          * Returns a list of all values contained in a given column,
          * without duplicates. 
@@ -101,7 +127,6 @@ namespace TechJobsConsole
 
             IsDataLoaded = true;
         }
-
         /*
          * Parse a single line of a CSV file into a string array
          */
